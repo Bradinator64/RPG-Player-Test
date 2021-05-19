@@ -27,6 +27,10 @@ class Player:
         else:
             print("item cannot be added to inventory")
 
+    def removeFromInventory(self, item):
+        itemToRemove = self.checkInventory(item)
+        del self.inventory[itemToRemove.name]
+
     #checks whether the object's inventory contains the
     #object specified in the parameter.  Returns None if
     #the object is not in the Player object's inventory,
@@ -61,6 +65,11 @@ class Player:
             else:
                 print(key + ": " + "None")
 
+    def printAllItems(self):
+        self.printInventory()
+        print()
+        self.printEquippedItems()
+
 class Item:
     def __init__(self, name, slot=[]):
         self.name = name
@@ -76,10 +85,11 @@ Sword = Weapon("Sword", "Main Hand", 2)
 Spear = Weapon("Spear", "Main Hand", 4)
 Shield = Item("Shield", "Off Hand")
 
+testPlayer.addToInventory(Spear)
 testPlayer.addToInventory(Sword)
 testPlayer.addToInventory(Shield)
-testPlayer.printInventory()
 testPlayer.equipItem(Sword)
 testPlayer.equipItem(Shield)
-testPlayer.printInventory()
-testPlayer.printEquippedItems()
+testPlayer.printAllItems()
+testPlayer.removeFromInventory(Spear)
+testPlayer.printAllItems()
