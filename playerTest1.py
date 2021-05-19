@@ -65,6 +65,11 @@ class Player:
             else:
                 print(key + ": " + "None")
 
+    def printAllItems(self):
+        self.printInventory()
+        print()
+        self.printEquippedItems()
+
 class Item:
     def __init__(self, name, slot=[]):
         self.name = name
@@ -83,13 +88,8 @@ Shield = Item("Shield", "Off Hand")
 testPlayer.addToInventory(Spear)
 testPlayer.addToInventory(Sword)
 testPlayer.addToInventory(Shield)
-testPlayer.printInventory()
-print()
 testPlayer.equipItem(Sword)
 testPlayer.equipItem(Shield)
-testPlayer.printInventory()
-testPlayer.printEquippedItems()
-print()
+testPlayer.printAllItems()
 testPlayer.removeFromInventory(Spear)
-testPlayer.printInventory()
-testPlayer.printEquippedItems()
+testPlayer.printAllItems()
