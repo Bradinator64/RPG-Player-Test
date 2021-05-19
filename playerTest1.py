@@ -14,9 +14,9 @@ class Player:
         self.name = name
         self.inventory = {}
         self.equipmentSlots = {
-            "armour" : None,
-            "mH" : None,
-            "oH" : None
+            "Armour" : None,
+            "Main Hand" : None,
+            "Off Hand" : None
         }
 
     def addToInventory(self, item):
@@ -37,7 +37,12 @@ class Player:
             return item
         else:
             return None
-            
+    
+    def printInventory(self):
+        print(self.name + " Inventory:")
+        for item in self.inventory.values():
+            print(item.name + " (" + type(item).__name__ + ")")
+
     def equipItem(self, item):
         itemSlot = self.equipmentSlots[item.slot]
         if self.checkInventory(item):
@@ -48,6 +53,13 @@ class Player:
         else:
             print("Item not in player inventory")
 
+    def printEquippedItems(self):
+        print(str(self.name) + " Equipped Items:")
+        for key in self.equipmentSlots:
+            if self.equipmentSlots[key] != None:
+                print(key + ": " + self.equipmentSlots[key].name)
+            else:
+                print(key + ": " + "None")
 
 class Item:
     def __init__(self, name, slot):
@@ -55,8 +67,8 @@ class Item:
         self.slot = slot
 
 testPlayer = Player("testPlayer")
-Sword = Item("Sword", "mH")
-Spear = Item("Spear", "mH")
+Sword = Item("Sword", "Main Hand")
+Spear = Item("Spear", "Main Hand")
 
 testPlayer.addToInventory(Sword)
 #testPlayer.addToInventory("test")
@@ -64,13 +76,12 @@ testPlayer.addToInventory(Sword)
 #print(testPlayer.checkInventory(Sword))
 
 testPlayer.equipItem(Sword)
-print("Player Inventory:")
-print(testPlayer.inventory)
-print("Player Equipment:")
-print(testPlayer.equipmentSlots)
+testPlayer.printInventory()
+testPlayer.printEquippedItems()
+print()
 testPlayer.addToInventory(Spear)
 testPlayer.equipItem(Spear)
 print("Player Inventory after spear:")
-print(testPlayer.inventory)
+testPlayer.printInventory()
 print("Player equipment after spear:")
-print(testPlayer.equipmentSlots)
+testPlayer.printEquippedItems()
