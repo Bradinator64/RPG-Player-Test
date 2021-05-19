@@ -62,26 +62,24 @@ class Player:
                 print(key + ": " + "None")
 
 class Item:
-    def __init__(self, name, slot):
+    def __init__(self, name, slot=[]):
         self.name = name
         self.slot = slot
 
+class Weapon(Item):
+    def __init__(self, name, slot, damage):
+        super().__init__(name, slot)
+        self.damage = damage
+
 testPlayer = Player("testPlayer")
-Sword = Item("Sword", "Main Hand")
-Spear = Item("Spear", "Main Hand")
+Sword = Weapon("Sword", "Main Hand", 2)
+Spear = Weapon("Spear", "Main Hand", 4)
+Shield = Item("Shield", "Off Hand")
 
 testPlayer.addToInventory(Sword)
-#testPlayer.addToInventory("test")
-#print(testPlayer.checkInventory(Spear))
-#print(testPlayer.checkInventory(Sword))
-
+testPlayer.addToInventory(Shield)
+testPlayer.printInventory()
 testPlayer.equipItem(Sword)
+testPlayer.equipItem(Shield)
 testPlayer.printInventory()
-testPlayer.printEquippedItems()
-print()
-testPlayer.addToInventory(Spear)
-testPlayer.equipItem(Spear)
-print("Player Inventory after spear:")
-testPlayer.printInventory()
-print("Player equipment after spear:")
 testPlayer.printEquippedItems()
