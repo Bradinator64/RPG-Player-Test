@@ -26,6 +26,13 @@ class Player:
         else:
             print("item cannot be added to inventory")
 
+    def checkInventory(self, item):
+        ItemFound = None
+        if item in self.inventory.values():
+            return item
+        else:
+            return None
+
 class Item:
     def __init__(self, name, slots=[]):
         self.name = name
@@ -33,8 +40,10 @@ class Item:
 
 testPlayer = Player("testPlayer")
 Sword = Item("Sword", ["mH"])
+Spear = Item("Spear", ["mH"])
 
 testPlayer.addToInventory(Sword)
 testPlayer.addToInventory("test")
+print(testPlayer.checkInventory(Spear))
 
 print(testPlayer.inventory)
